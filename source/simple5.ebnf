@@ -1,0 +1,5 @@
+start: alt1 | alt2 | alt3 | alt4
+alt1: "alt1"
+alt2: "alt2"
+alt3: "alt3"
+alt4: "alt4"

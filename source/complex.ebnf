@@ -1,0 +1,5 @@
+start: NEWLINE | nterm1 | nterm2 | nterm3 | nterm4
+nterm1: ("term1-1" | "term1-2") [";"]
+nterm2: "term2-1" [";"]
+nterm3: "term3-1" +
+nterm4: "term4-1" *

@@ -1,0 +1,2 @@
+alts: ">=" | "stringtwo"
+single: "single" | alts

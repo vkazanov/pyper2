@@ -1,0 +1,113 @@
+* Python Ported Parser (pyppr)
+** tokenize.el [5/5]
+
+   Implement everything else first, then try the following to optimize:
+
+     a) in PyPy tokenizer they use hand-written DFA's. Should I try a similar
+     approach?
+
+     b) it should also be possible to improve speed in the current regexp
+     looking-at-string implementation
+
+   - [X] tokenize.el, both as a usual function and a generator
+   - [X] collect and fix errors using a bigger file (e.g., tokenizer.py)
+   - [X] autotests
+   - [X] compare Py and ELisp tokenizers (should match)
+
+     STRING - OK
+     NEWLINE - OK (266/266)
+     NL - OK (113/113)
+     OP - OK (1062/1062)
+     NAME - OK (894/894)
+     NUMBER - OK
+     COMMENT - OK
+
+     You now what to do.
+
+   - [X] remove the 'yield' function. The tokenizer should just return a parsed
+     token list (fix the tests accordingly). Consider this as a first step to
+     tokenizing parts of buffers only
+
+** metaparser [15/15]
+
+   - [X] include grammar for Python 2.7
+
+   - [X] the first test (NAME: RHS) using a single alternative (self.parse_alt()
+     --> self.parse_item()) --> self.parse_atom()
+
+     - dump one or two rules for the NFA
+
+     - make a test on the simplest test
+
+   - [X] complex atom cases
+
+   - [X] complex item cases
+
+   - [X] complex alt cases
+
+   - [X] rhs
+
+   - [X] NFA to DFA
+
+   - [X] clean the code, refactor the tests
+
+   - [X] simplify dfa
+
+   - [X] parse
+
+   - [X] calcfirst
+
+   - [X] addfirstsets
+
+   - [X] grammar struct
+
+   - [X] dump data from pgen
+
+   - [X] make_grammar
+
+     - [X] make_grammar skeleton
+
+     - [X] make_first
+
+     - [X] make_label skeleton
+
+     - [X] make_label
+
+       make a better test using real tokens and keywords
+
+       use the test, fix the errors
+
+     - [X] make_label (throw the result for good)
+
+     - [X] fix make_label/make the test
+
+     - [X] make_grammar -> check on a bigger complete grammar
+
+** parser.el [10/13]
+
+   - [X] dump grammar as loadable ELisp
+   - [X] grammar loader
+   - [X] remove the metaparser
+   - [X] include the modified version of pgen2
+   - [X] clean up in grammar.el
+     - [X] separating ops and tokens
+   - [X] adapt the tokenizer
+   - [X] parser skeleton, build the plan
+   - [X] start the parser package using names
+   - [X] check parse tokens in driver to prepare the token stream for the parser
+   - [X] token-opmap
+   - [-] parser
+     - [X] classify
+     - [ ] shift
+     - [ ] push
+     - [ ] pop
+     - [ ] addtoken
+   - [ ] driver
+     - [ ] OP should be replaced with a proper operator code
+   - [ ] names package for the tokenizer
+
+** TODO the pyper-mode itself (not sure about the name yet)
+
+* TODO Python Incremental Parser (incr-mode and it's usage)
+
+* TODO Check if it is possible to generate Emacs bytecode from Python-like code
